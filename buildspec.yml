@@ -2,14 +2,11 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 10
+        python: 3.8
+  build:
     commands:
-      - aws cloudformation package --template-file template.yaml --s3-bucket auto-aws-db-shutdown-deployment-artifacts --output-template-file outputTemplate.yaml
-
+      - sam package --template-file template.yml --s3-bucket bucketname --output-template-file packaged-template.yml
 artifacts:
-  type: zip
   files:
-    - template.yaml
-    - outputTemplate.yaml
-
+    - packaged-template.yml
 
